@@ -3,29 +3,46 @@ html, body {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
+	font-family: 'Fredoka One', cursive;
 }
+
 .wrapper {
 	height: 100%;
 	width: 100%;
 	background-image: url('../images/background_panda.jpg');
 	background-size: 100%;
+	padding: 10px 0px;
 }
 
 .container {
-	width: 1024px;
+	max-width: 1024px;
 	margin: 0 auto;
 	height: 100%;
 	background-color: #fff;
 	background-color: rgba(255, 255, 255, 0.8);
 	text-align: center;
+	border-radius: 10px;
+	border: 3px solid #ececec;
 }
 
 h1 {
 	font-size: 36px;
 }
 
+.title {
+	padding: 40px 0px 20px 0px;
+	font-size: 36px;
+}
+
 header {
 	margin: 10px 0px;
+}
+
+.bottom-spacer {
+	margin-bottom: 20px;
+}
+
+.answer {
 }
 
 #start-btn {
@@ -37,7 +54,7 @@ header {
 }
 
 #question-box {
-	margin-bottom: 20px;
+	margin: 40px 0px 20px 0px;
 	padding: 0px;
 	font-size: 18px;
 }
@@ -49,7 +66,6 @@ header {
 
 #option-box li {
 	background: green;
-	margin-bottom: 10px;
 	list-style-type: none;
 	padding: 10px 20px;
 	border-radius: 5px;
@@ -60,11 +76,14 @@ header {
 	background: blue;
 }
 
-/*
-#option-box li input{
-	display: none;	
+
+#scores-box, #timer-box {
+	width: 50%;
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
 }
-*/
+
 #trivia {
 	width: 400px;
 	margin: 0 auto;

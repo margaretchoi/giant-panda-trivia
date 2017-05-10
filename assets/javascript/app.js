@@ -1,24 +1,3 @@
-// var questions = [
-// 	"What part of your application do admissions officers read first?", 
-// 	"Your Most Meaningful essay", 
-// 	"How many letters of rec do you need?", 
-// 	"Minimum 3",
-// 	"Do medical schools care what your major is?",
-// 	"Nope, not really"
-// 	];
-
-// document.getElementById("questions").innerHTML = questions[0];
-// var i = 0;
-
-// document.getElementById("start").addEventListener("click", showNext);
-
-// function showNext() {
-// 	i = i + 1; 
-// 	i = i % questions.length; 
-// 	document.getElementById("questions").innerHTML = questions[i];
-// };
-
-
 var correct = 0;
 var incorrect = 0;
 
@@ -94,18 +73,20 @@ var q8 = {
 		answer: "They are carnivores."
 	}
 var q9 = {
-		text: "How long does a panda usually live in captivity?",
-		option1: "80 - 90 years",
-		option2: "55 - 65 years",
-		option3: "10 - 15 years",
-		option4: "20 - 30 years",
-		answer: "20 - 30 years"
+		text: "How old is the oldest Giant Panda, named Jia Jia?",
+		option1: "48 years old",
+		option2: "37 years old",
+		option3: "52 years old",
+		option4: "61 years old",
+		answer: "37 years old"
 	}
 var q10 = {
-		text: "The panda has an enlarged wristbone that works as an opposable thumb.",
-		option1: "True",
-		option2: "False",
-		answer: "True"
+		text: "How many hours do pandas spend eating a day?",
+		option1: "1 - 2 hours",
+		option2: "3 - 5 hours",
+		option3: "6 - 9 hours",
+		option4: "10 - 16 hours",
+		answer: "10 - 16 hours"
 	}
 
 var questionSet = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
@@ -118,6 +99,7 @@ $(document).ready(function() {
 	var x = "<button id='start-btn'>Start Game</button>";
 	$('#trivia').append(x);
 	$('#start-btn').click(startGame);
+
 
 });
 
@@ -134,36 +116,10 @@ function startGame() {
 
 	// Hide the start button after it's clicked
 	$('#start-btn').hide();
-
-	var x = "<button id='restart-btn'>Restart</button>";
-	$('#restart-box').append(x);
-	$('#restart-btn').click(function(){location.reload();});
 }
 
 function firstQuestion() {
-
-	// Loop through each element in the questions object and display it
-	// var x;
-	// for (x in questionSet) {
-	// 	// Adds the question to the question box
-	// 	$('#question-box').html(questionSet[x].text);
-
-	// 	// Create radio button for each question
-	// 	$('#option-box').html('<input type="radio" name="action" id="option1">' + questionSet[x].option1 
-	// 		+ '<br>');
-	// 	$('#option1').val(questionSet[x].option1);
-	// 	$('#option-box').append('<input type="radio" name="action"  id="option2">' + questionSet[x].option2 
-	// 		+ '<br>');
-	// 	$('#option2').val(questionSet[x].option2);
-	// 	$('#option-box').append('<input type="radio" name="action" id="option3">' + questionSet[x].option3 + '<br>');
-	// 	$('#option3').val(questionSet[x].option3);
-	// 	$('#option-box').append('<input type="radio" name="action"  id="option4">' + questionSet[x].option4 + '<br>');
-	// 	$('#option4').val(questionSet[x].option4);
-	// }
-
-
  	loadQuestion();
-
 }
 
 var x;
@@ -184,17 +140,19 @@ function loadQuestion() {
 		// Stop timer at 0
 		if (t <= 0) {
 			// var x;
-			$('#reveal-box').html("You're out of time! The correct answer is ");
+			$('#reveal-box').html("You're out of time! The correct answer is " + questionSet[x].answer);
 			$('#timer-box').html("0 seconds");
 			incorrect++;
 			$('#scores-box').html('Correct: ' + correct + '<br> Incorrect: ' + incorrect);
 					
-			setInterval(nextQuestion(), 3000);
-
+			
 			clearInterval(countDown);
+			setTimeout(nextQuestion, 3000);
 		}
 
 	}
+	
+	$('#option-box').show();
 
 	$('#question-box').html(questionSet[x].text);
 	// Create radio button for each question
@@ -216,14 +174,18 @@ function loadQuestion() {
 	// Changes when the link is clicked
 	$('.answer').on('click', function() {
 
+		// Keep item highlighted on selection
+		$(this).attr('background', '#000');
+
 		// If the clicked button matches the answer, show correct
 		if (this.innerHTML === questionSet[x].answer) {
-			$('#reveal-box').html("Correct!");
+			$('#reveal-box').html("Correct!<br/>");
+
+			// Increase correct
 			correct++;
 			$('#scores-box').html('Correct: ' + correct + '<br> Incorrect: ' + incorrect);
 			
-			
-			$(this).attr('background', '#000');
+			// Turn off click listeners
 			$('.answer').off('click');
 			clearInterval(countDown);
 			setTimeout(nextQuestion, 3000);
@@ -231,25 +193,31 @@ function loadQuestion() {
 
 		// If the clicked button  doesn't match, adds the correct answer to the reveal box
 		else {
-			$('#reveal-box').html("Wrong, the correct answer is " + questionSet[x].answer);
+			$('#reveal-box').html('Wrong! The correct answer is <b>"' + questionSet[x].answer + '"</b><br/>');
+			
+			// Increase incorrect
 			incorrect++;
 			$('#scores-box').html('Correct: ' + correct + '<br> Incorrect: ' + incorrect);
 			
-			
-			$(this).attr('background', '#000');
+			// Turn off click listeners
 			$('.answer').off('click');
 			clearInterval(countDown);
 			setTimeout(nextQuestion, 3000);
 		}
+
+		$('#option-box').hide();
+
+		var queryURL = "http://api.giphy.com/v1/gifs/search?q=panda&api_key=dc6zaTOxFJmzC";
+
+	    $.ajax({
+	      url: queryURL,
+	      method: 'GET'
+	    }).done(function(response) {
+	      console.log(response);
+	      $('#reveal-box').append('<img src="' + response.data[Math.floor((Math.random() * 25) + 1)].images.fixed_height.url + '">');
+	    });
 	
-		// $('form').submit();
-		// $('<form>').submit(timer);
-
-		// Delay the next question after a radio is checked
-
 	});
-
-	
 
 }
 
@@ -268,43 +236,27 @@ function nextQuestion() {
 
 
 function endGame() {
-	console.log('end');
-	$('#trivia').html('<h2>Good game!</h2> Correct: ' + correct + '<br> Incorrect: ' 
-		+ incorrect);
-	var x = "<button id='restart-btn'>Restart</button>";
+	if (correct <= 3) {
+		$('#trivia').html('Not great =( <br/> Study up on your panda facts and play again.<br>');
+	}
+	else if (correct > 3) {
+		$('#trivia').html('<p>You are a panda expert! Play again if you love pandas.<p>');
+	}
+
+	$('#trivia').append('Correct: ' + correct + '<br> Incorrect: ' 
+		+ incorrect + '<br>');
+
+	var queryURL = "http://api.giphy.com/v1/gifs/search?q=panda&api_key=dc6zaTOxFJmzC";
+	$.ajax({
+      url: queryURL,
+      method: 'GET'
+    }).done(function(response) {
+      console.log(response);
+      $('#reveal-box').append('<img src="' + response.data[Math.floor((Math.random() * 25) + 1)].images.fixed_height.url + '">');
+    });
+
+	var x = "<button id='restart-btn'>Play Again</button>";
 	$('#trivia').append(x);
 	$('#restart-btn').click(function(){location.reload();});
 }
-
-
-// function timer() {
-// 	t = 20;
-// 	$('#timer-box').html(t + ' seconds');
-// 	var countDown = setInterval(timerCount, 1000);
-
-// 	function timerCount() {
-// 		t--; 
-// 		$('#timer-box').html(t + ' seconds');
-
-// 		// Stop timer at 0
-// 		if (t <= 0) {
-// 			// var x;
-// 			$('#reveal-box').html("You're out of time! The correct answer is ");
-// 			$('#timer-box').html("0 seconds");
-// 			incorrect++;
-// 			$('#scores-box').html('Correct: ' + correct + '<br> Incorrect: ' + incorrect);
-					
-// 			setInterval(nextQuestion(), 3000);
-
-// 			clearInterval(countDown);
-// 		}
-
-// 	}
-
-// }
-
-
-
-
-// if answer matches - confrim, if not - wrong answer and 
 
