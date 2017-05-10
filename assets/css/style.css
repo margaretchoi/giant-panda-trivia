@@ -1,0 +1,77 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+.wrapper {
+	height: 100%;
+	width: 100%;
+	background-image: url('../images/background_panda.jpg');
+	background-size: 100%;
+}
+
+.container {
+	width: 1024px;
+	margin: 0 auto;
+	height: 100%;
+	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0.8);
+	text-align: center;
+}
+
+h1 {
+	font-size: 36px;
+}
+
+header {
+	margin: 10px 0px;
+}
+
+#start-btn {
+	background: green;
+	margin-bottom: 10px;
+	padding: 10px 20px;
+	border-radius: 5px;
+	color: #fff;
+}
+
+#question-box {
+	margin-bottom: 20px;
+	padding: 0px;
+	font-size: 18px;
+}
+
+#option-box {
+	margin: 0px;
+	padding: 0px;
+}
+
+#option-box li {
+	background: green;
+	margin-bottom: 10px;
+	list-style-type: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	color: #fff;
+}
+
+#option-box li:hover {
+	background: blue;
+}
+
+/*
+#option-box li input{
+	display: none;	
+}
+*/
+#trivia {
+	width: 400px;
+	margin: 0 auto;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
