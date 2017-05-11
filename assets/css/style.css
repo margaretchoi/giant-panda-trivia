@@ -3,23 +3,23 @@ html, body {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
-	font-family: 'Fredoka One', cursive;
+	font-family: 'Delius', cursive;
 }
 
 .wrapper {
 	height: 100%;
 	width: 100%;
-	background-image: url('../images/background_panda.jpg');
-	background-size: 100%;
-	padding: 10px 0px;
+	background-image: url('../images/bamboo.png');
+	background-size: 20%;
+	padding: 20px 0px;
 }
 
 .container {
-	max-width: 1024px;
+	width: 50%;
 	margin: 0 auto;
-	height: 100%;
+	padding: 40px;
 	background-color: #fff;
-	background-color: rgba(255, 255, 255, 0.8);
+	background-color: rgba(255, 255, 255, 1);
 	text-align: center;
 	border-radius: 10px;
 	border: 3px solid #ececec;
@@ -30,7 +30,7 @@ h1 {
 }
 
 .title {
-	padding: 40px 0px 20px 0px;
+	padding: 20px 0px 20px 0px;
 	font-size: 36px;
 }
 
@@ -85,7 +85,7 @@ header {
 }
 
 #trivia {
-	width: 400px;
+	width: 80%;
 	margin: 0 auto;
 }
 
