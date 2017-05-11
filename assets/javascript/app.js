@@ -259,7 +259,7 @@ function endGame() {
 
 	$('#trivia').append('<h2>Final Score</h2><div class="final-score bottom-spacer">Correct: ' + correct + '<br> Incorrect: ' 
 		+ incorrect + '<br></div>');
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q=panda&api_key=dc6zaTOxFJmzC";
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=panda&api_key=dc6zaTOxFJmzC";
 	$.ajax({
       url: queryURL,
       method: 'GET'
