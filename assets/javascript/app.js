@@ -89,6 +89,8 @@ var q10 = {
 		answer: "10 - 16 hours"
 	}
 
+
+var allQuestions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
 var questionSet = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
 
 // New trivia
@@ -100,7 +102,8 @@ $(document).ready(function() {
 	$('#trivia').append(x);
 	$('#start-btn').click(startGame);
 
-
+	//Randomize order of questions
+	// randomize();
 });
 
 
@@ -116,7 +119,18 @@ function startGame() {
 
 	// Hide the start button after it's clicked
 	$('#start-btn').hide();
+
 }
+
+// function randomize() {
+// 	for ( i = 0; i < 10; i++) {
+// 		z = Math.floor((Math.random() * allQuestions.length) + 0);
+// 		y = allQuestions[z];
+// 		allQuestions.splice(y, 1);
+// 		questionSet.push(y);
+// 	}
+// 	console.log(questionSet);
+// }
 
 function firstQuestion() {
  	loadQuestion();
@@ -140,7 +154,7 @@ function loadQuestion() {
 		// Stop timer at 0
 		if (t <= 0) {
 			// var x;
-			$('#reveal-box').html("You're out of time! The correct answer is " + questionSet[x].answer);
+			$('#reveal-box').html("You're out of time! The correct answer is " + questionSet[x].answer).attr('class', 'red');
 			$('#timer-box').html("0 seconds");
 			incorrect++;
 			$('#scores-box').html('Correct: ' + correct + '<br> Incorrect: ' + incorrect);
@@ -179,7 +193,7 @@ function loadQuestion() {
 
 		// If the clicked button matches the answer, show correct
 		if (this.innerHTML === questionSet[x].answer) {
-			$('#reveal-box').html("Correct!<br/>");
+			$('#reveal-box').html("Correct!<br/>").attr('class', 'green');
 
 			// Increase correct
 			correct++;
@@ -193,11 +207,11 @@ function loadQuestion() {
 
 		// If the clicked button  doesn't match, adds the correct answer to the reveal box
 		else {
-			$('#reveal-box').html('Wrong! The correct answer is <b>"' + questionSet[x].answer + '"</b><br/>');
+			$('#reveal-box').html('Wrong! The correct answer is <b>"' + questionSet[x].answer + '"</b><br/>').attr('class', 'red');
 			
 			// Increase incorrect
 			incorrect++;
-			$('#scores-box').html('Correct: ' + correct + '<br> Incorrect: ' + incorrect);
+			$('#scores-box').html('<br>Correct: ' + correct + '<br> Incorrect: ' + incorrect);
 			
 			// Turn off click listeners
 			$('.answer').off('click');
@@ -237,15 +251,14 @@ function nextQuestion() {
 
 function endGame() {
 	if (correct <= 3) {
-		$('#trivia').html('Not great =( <br/> Study up on your panda facts and play again.<br>');
+		$('#trivia').html('Not great =( <br/> Study up on your panda facts and play again.<br/>');
 	}
 	else if (correct > 3) {
 		$('#trivia').html('<p>You are a panda expert! Play again if you love pandas.<p>');
 	}
 
-	$('#trivia').append('Correct: ' + correct + '<br> Incorrect: ' 
-		+ incorrect + '<br>');
-
+	$('#trivia').append('<h2>Final Score</h2><div class="final-score bottom-spacer">Correct: ' + correct + '<br> Incorrect: ' 
+		+ incorrect + '<br></div>');
 	var queryURL = "http://api.giphy.com/v1/gifs/search?q=panda&api_key=dc6zaTOxFJmzC";
 	$.ajax({
       url: queryURL,

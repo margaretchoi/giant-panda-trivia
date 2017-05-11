@@ -9,7 +9,7 @@ html, body {
 .wrapper {
 	height: 100%;
 	width: 100%;
-	background-image: url('../images/bamboo.png');
+	background: url('../images/bamboo.png') repeat;
 	background-size: 20%;
 	padding: 20px 0px;
 }
@@ -31,7 +31,7 @@ h1 {
 
 .title {
 	padding: 20px 0px 20px 0px;
-	font-size: 36px;
+	font-size: 42px;
 }
 
 header {
@@ -45,7 +45,17 @@ header {
 .answer {
 }
 
-#start-btn {
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
+}
+
+
+
+button {
 	background: green;
 	margin-bottom: 10px;
 	padding: 10px 20px;
@@ -56,7 +66,8 @@ header {
 #question-box {
 	margin: 40px 0px 20px 0px;
 	padding: 0px;
-	font-size: 18px;
+	font-size: 28px;
+	font-weight: 500;
 }
 
 #option-box {
@@ -70,12 +81,19 @@ header {
 	padding: 10px 20px;
 	border-radius: 5px;
 	color: #fff;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+	border-bottom: 2px solid #b1c64b;
+	text-transform: uppercase;
 }
 
 #option-box li:hover {
-	background: blue;
+	background: #aec347; 
 }
 
+#timer-box {
+	color: red;
+
+}
 
 #scores-box, #timer-box {
 	width: 50%;
