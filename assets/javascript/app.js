@@ -48,7 +48,7 @@ var q5 = {
 	}
 
 var q6 = {
-		text: "Pandas spend 10-16 hours a day eating, the rest of the time they are usually resting. When are pandas most active?",
+		text: "Pandas spend most of their day eating, the rest of the time they are usually resting. When are pandas most active?",
 		option1: "Between 2p and 10pm",
 		option2: "Only at night",
 		option3: "Between 10am and 2pm",
@@ -89,8 +89,6 @@ var q10 = {
 		answer: "10 - 16 hours"
 	}
 
-
-var allQuestions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
 var questionSet = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
 
 // New trivia
@@ -102,14 +100,14 @@ $(document).ready(function() {
 	$('#trivia').append(x);
 	$('#start-btn').click(startGame);
 
-	//Randomize order of questions
-	// randomize();
 });
 
 
 // Starts game on click of start button
 function startGame() {
 	console.log('start');
+
+	randomize();
 
 	// Create the first question and show it
 	firstQuestion();
@@ -122,15 +120,10 @@ function startGame() {
 
 }
 
-// function randomize() {
-// 	for ( i = 0; i < 10; i++) {
-// 		z = Math.floor((Math.random() * allQuestions.length) + 0);
-// 		y = allQuestions[z];
-// 		allQuestions.splice(y, 1);
-// 		questionSet.push(y);
-// 	}
-// 	console.log(questionSet);
-// }
+function randomize() {
+	questionSet.sort(function(a, b){return 0.5 - Math.random()});
+	console.log(questionSet);
+}
 
 function firstQuestion() {
  	loadQuestion();
