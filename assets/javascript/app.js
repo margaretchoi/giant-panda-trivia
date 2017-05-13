@@ -204,7 +204,7 @@ function loadQuestion() {
 			
 			// Increase incorrect
 			incorrect++;
-			$('#scores-box').html('<br>Correct: ' + correct + '<br> Incorrect: ' + incorrect);
+			$('#scores-box').html('Correct: ' + correct + '<br> Incorrect: ' + incorrect);
 			
 			// Turn off click listeners
 			$('.answer').off('click');

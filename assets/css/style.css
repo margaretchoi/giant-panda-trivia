@@ -84,11 +84,15 @@ button {
 	text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 	border-bottom: 2px solid #b1c64b;
 	text-transform: uppercase;
+	-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
 }
 
 #option-box li:hover {
 	background: #aec347; 
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
 }
+
 
 #timer-box {
 	color: red;
